@@ -1,0 +1,46 @@
+<h1 id="tableLabel">Records data</h1>
+
+<p *ngIf="!recordData"><em>Loading...</em></p>
+
+<table class='table table-striped text-white' aria-labelledby="tableLabel" *ngIf="recordData">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Birthdate</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of recordData ; index as i">
+      <td>
+      {{ record.username }} 
+        <input *ngIf="enableEdit && enableEditIndex == i" [ngModel]="record.username"  (ngModelChange)="record.username = $event"/>
+      </td>
+      <td>
+        {{ record.email }}
+        <input *ngIf="enableEdit && enableEditIndex == i"  type="email" [ngModel]="record.email" (ngModelChange)="record.email = $event" required />
+      </td>
+      <td>
+        {{ record.birthdate }}
+        <input *ngIf="enableEdit && enableEditIndex == i" type="date" [ngModel]="record.birthdate" (ngModelChange)="record.birthdate = $event" required />
+      </td>
+      <td>
+        {{ record.firstname }}
+        <input *ngIf="enableEdit && enableEditIndex == i" [ngModel]="record.firstname" (ngModelChange)="record.firstname = $event"/>
+      </td>
+      <td>
+        {{ record.lastname }}
+        <input *ngIf="enableEdit && enableEditIndex == i" [ngModel]="record.lastname" (ngModelChange)="record.lastname = $event"/>
+      </td>
+      <td>
+        <button *ngIf="enableEdit && enableEditIndex == i" (click)="RemoveItem(record)" class="btn page-secondary-action-btn text-white">Remove</button>
+        <button *ngIf="enableEdit && enableEditIndex == i" class="btn page-primary-action-btn text-white" (click)="saveItem(record)">Save</button>
+        <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn page-secondary-action-btn text-white" ng-click="cancel()">Cancel</button>
+        <button *ngIf="!enableEdit" class="btn page-primary-action-btn text-white" (click)="enableEditMethod($event, i)">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

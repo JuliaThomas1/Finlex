@@ -1,0 +1,22 @@
+<div>
+  <div>
+    <h1>Welcome To "Save your Data"</h1>
+    <p>Just Type Your Data here </p>
+
+    <form class="center"[formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+      <label for="username">Username: *</label><br />
+      <input type="text" formControlName="username" id="username" name="username" required /><br />
+      <label for="email">Email: *</label><br />
+      <input type="email" formControlName="email" id="email" name="email" required /><br />
+      <label for="birthdate">Date of birth: *</label><br />
+      <input type="date" formControlName="birthdate" id="birthdate" name="birthdate" required /><br />
+      <label>First Name:</label><br />
+      <input type="text" formControlName="firstname" /><br />
+      <label>Last Name:</label><br />
+      <input type="text" formControlName="lastname"/><br />
+      <input type="submit" [disabled]="!checkoutForm.valid"/>
+    </form>
+
+  </div>
+  
+</div>
